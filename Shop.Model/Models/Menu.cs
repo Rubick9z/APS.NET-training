@@ -7,22 +7,27 @@ namespace Shop.Model.Models
     public class Menu
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+
         [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
+
         [Required]
+        [MaxLength(500)]
         public string URL { get; set; }
     
         public int? DisplayOrder { get; set; }
 
-        [Required]
         public int GroupID { get; set; }
 
         [ForeignKey("GroupID")]
         public virtual MenuGroup MenuGroup { get; set; }
 
+        [Column(Order =50, TypeName ="varchar")]
         public string Target { get; set; }
-        [Required]
+        
         public bool Status { get; set; }
     }
 }
